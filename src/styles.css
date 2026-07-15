@@ -1,0 +1,43 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #2b2027;
+  background: #f8f3f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+
+button, input { font: inherit; }
+
+.hero {
+  min-height: 100vh;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  background:
+    radial-gradient(circle at 83% 20%, rgba(201, 151, 158, 0.28), transparent 30rem),
+    linear-gradient(135deg, #fbf8f6 0%, #f2e8e6 100%);
+}
+
+.brand { display: flex; align-items: center; gap: .75rem; font-size: 1.15rem; font-weight: 750; letter-spacing: -.02em; }
+.brand-mark { display: grid; place-items: center; width: 2.4rem; aspect-ratio: 1; border-radius: 50%; color: #fff; background: #472f3f; }
+.hero-grid { width: min(1120px, 100%); margin: clamp(5rem, 13vh, 9rem) auto 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(3rem, 8vw, 7rem); align-items: center; }
+.eyebrow { margin: 0 0 1rem; color: #8b5262; font-size: .82rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+h1 { max-width: 12ch; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 500; line-height: .94; letter-spacing: -.055em; }
+.intro { max-width: 36rem; margin: 1.75rem 0; color: #695a62; font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.65; }
+.foundation-list { display: grid; gap: .8rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+.foundation-list li { display: flex; align-items: center; gap: .7rem; }
+.foundation-list svg { width: 1.15rem; color: #8b5262; stroke-width: 2.5; }
+.status-card { padding: clamp(1.7rem, 4vw, 3rem); border: 1px solid rgba(71, 47, 63, .1); border-radius: 1.75rem; background: rgba(255, 255, 255, .76); box-shadow: 0 1.5rem 5rem rgba(71, 47, 63, .1); backdrop-filter: blur(20px); }
+.status-icon { display: grid; place-items: center; width: 3.2rem; aspect-ratio: 1; border-radius: 1rem; color: #fff; background: #8b5262; }
+.status-label { margin: 2rem 0 .5rem; color: #8b5262; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.status-card h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.08; }
+.status-row { display: flex; gap: .75rem; align-items: center; margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid #e8dcde; color: #57464f; }
+.status-row svg { width: 1.2rem; }
+.environment-status { margin: 1.25rem 0 0; color: #8b7a82; font-size: .88rem; }
+
+@media (max-width: 760px) {
+  .hero-grid { margin-top: 4rem; grid-template-columns: 1fr; }
+  h1 { max-width: 10ch; }
+}

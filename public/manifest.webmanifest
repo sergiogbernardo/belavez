@@ -1,0 +1,10 @@
+{
+  "name": "BelaVez",
+  "short_name": "BelaVez",
+  "description": "Agendamento simples para negócios de beleza.",
+  "start_url": "/belavez/",
+  "scope": "/belavez/",
+  "display": "standalone",
+  "background_color": "#f8f3f2",
+  "theme_color": "#472f3f"
+}
