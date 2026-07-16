@@ -37,3 +37,19 @@ export type BookingDetails = {
   phone: string;
   email: string;
 };
+
+export type MarketplaceSalon = {
+  id: string;
+  name: string;
+  slug: string;
+  location: string;
+  distance: string;
+  rating: number;
+  reviewCount: number;
+  priceFromCents: number;
+  nextAvailable: string;
+  categories: string[];
+  services: string[];
+  theme: 'rose' | 'sage' | 'sand' | 'plum' | 'blue' | 'terracotta';
+  featured?: boolean;
+};

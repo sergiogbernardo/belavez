@@ -18,7 +18,9 @@ import {
   UsersRound,
   X,
 } from 'lucide-react';
-import { demoCatalog } from './data/demoCatalog';
+import BusinessPage from './BusinessPage';
+import Marketplace from './Marketplace';
+import { demoCatalogForSalon } from './data/demoCatalog';
 import { loadPublicCatalog } from './lib/catalog';
 import type { BookingDetails, BusinessHour, Professional, SalonCatalog, Service } from './types';
 
@@ -68,7 +70,7 @@ function slotsForDate(date: Date, businessHours: BusinessHour[]) {
 
 function Brand() {
   return (
-    <a className="brand" href="./" aria-label="BelaVez — início">
+    <a className="brand" href="#/" aria-label="BelaVez — início">
       <span className="brand-mark" aria-hidden="true"><Sparkles /></span>
       <span className="brand-name">Bela<span>Vez</span></span>
     </a>
@@ -132,8 +134,12 @@ function BookingSummary({ service, professional, date, time }: {
   );
 }
 
-export default function App() {
-  const [catalog, setCatalog] = useState<SalonCatalog>(demoCatalog);
+function currentSalonSlug() {
+  return window.location.hash.match(/^#\/salao\/([^/?]+)/)?.[1] || 'atelie-aurora';
+}
+
+function SalonPage() {
+  const [catalog, setCatalog] = useState<SalonCatalog>(() => demoCatalogForSalon(currentSalonSlug()));
   const [isDemo, setIsDemo] = useState(true);
   const [loadingCatalog, setLoadingCatalog] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -146,7 +152,9 @@ export default function App() {
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
-    const slug = new URLSearchParams(window.location.search).get('salao') || 'atelie-aurora';
+    const slug = currentSalonSlug();
+    setCatalog(demoCatalogForSalon(slug));
+    setIsDemo(true);
     let active = true;
     loadPublicCatalog(slug)
       .then((remoteCatalog) => {
@@ -206,7 +214,7 @@ export default function App() {
         <Brand />
         <nav className={mobileMenu ? 'is-open' : ''} aria-label="Navegação principal">
           <a href="#como-funciona">Como funciona</a>
-          <a href="#para-saloes">Para salões</a>
+          <a href="#/para-saloes">Para salões</a>
           <button className="login-button" type="button">Entrar</button>
         </nav>
         <button className="menu-button" type="button" aria-label={mobileMenu ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMobileMenu(!mobileMenu)}>
@@ -221,7 +229,7 @@ export default function App() {
       <main>
         <section className="salon-hero" aria-labelledby="salon-name">
           <div className="salon-hero-inner">
-            <div className="salon-monogram" aria-hidden="true">AA</div>
+            <div className="salon-monogram" aria-hidden="true">{initials(catalog.name)}</div>
             <div className="salon-heading">
               <p className="overline">Agendamento online</p>
               <h1 id="salon-name">{catalog.name}</h1>
@@ -331,11 +339,36 @@ export default function App() {
 
         <section className="business-cta" id="para-saloes">
           <div><p className="overline">BelaVez para negócios</p><h2>Menos tempo organizando. Mais tempo cuidando.</h2><p>Agenda, equipe e experiência do cliente em um só lugar.</p></div>
-          <button className="light-button" type="button"><Store /> Quero conhecer</button>
+          <a className="light-button" href="#/para-saloes"><Store /> Quero conhecer</a>
         </section>
       </main>
 
       <footer><Brand /><span>© 2026 BelaVez</span><a href="#salon-name">Voltar ao topo</a></footer>
     </div>
   );
+}
+
+function readRoute() {
+  return window.location.hash.replace(/^#\/?/, '');
+}
+
+export default function App() {
+  const [route, setRoute] = useState(readRoute);
+
+  useEffect(() => {
+    const handleHashChange = () => setRoute(readRoute());
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    document.title = route.startsWith('salao/')
+      ? `${demoCatalogForSalon(route.split('/')[1] || '').name} | BelaVez`
+      : route === 'para-saloes' ? 'BelaVez para salões' : 'BelaVez — encontre seu salão';
+  }, [route]);
+
+  if (route.startsWith('salao/')) return <SalonPage key={route} />;
+  if (route === 'para-saloes') return <BusinessPage />;
+  return <Marketplace />;
 }

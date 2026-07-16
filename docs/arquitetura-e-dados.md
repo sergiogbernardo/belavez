@@ -6,6 +6,11 @@ O frontend estático é servido pelo GitHub Pages. Autenticação, banco relacio
 e atualizações em tempo real ficam no Nhost. O navegador conhece somente o
 subdomínio e a região públicos; a autorização real é aplicada pelo Hasura.
 
+O frontend possui três superfícies principais: o marketplace de descoberta, a
+vitrine/agendamento de cada salão e a aquisição de estabelecimentos. As rotas
+estáticas usam `#/`, `#/salao/:slug` e `#/para-saloes` para funcionar diretamente
+no GitHub Pages sem servidor de reescrita.
+
 ## Isolamento multi-tenant
 
 `salons` é a raiz de cada espaço. Toda tabela operacional carrega `salon_id` e

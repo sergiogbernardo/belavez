@@ -2,10 +2,10 @@
 
 **Seu salão, no tempo certo.**
 
-Plataforma de agendamento para salões, barbearias, estúdios de unhas, estética
-e outros negócios de beleza. Cada estabelecimento administra sua equipe,
-serviços, disponibilidade e clientes em um espaço isolado, enquanto o público
-agenda por uma página própria do negócio.
+Hub de descoberta e agendamento para salões, barbearias, estúdios de unhas,
+estética e outros negócios de beleza. O público encontra e compara negócios por
+localização, serviço, preço e disponibilidade. Cada estabelecimento contratado
+ganha uma vitrine personalizável e administra equipe, serviços e agenda.
 
 ## Stack
 
@@ -31,10 +31,14 @@ fidelidade, estoque, comissões, caixa e marketplace público de salões.
 
 ## Estado atual
 
-A página pública já possui um fluxo responsivo de demonstração com escolha de
-serviço, profissional, data, horário, identificação do cliente, resumo e
-conclusão. O catálogo tenta carregar dados publicados pelo Hasura e usa o Ateliê
-Aurora como exemplo enquanto nenhum salão real estiver cadastrado.
+A página inicial funciona como marketplace com busca, localização, filtros e
+vitrines de demonstração. Cada card abre a página personalizada do salão, que
+possui um fluxo responsivo com escolha de serviço, profissional, data, horário,
+identificação do cliente, resumo e conclusão.
+
+A área “Para salões” apresenta o plano mensal único e a proposta de contratação.
+As rotas usam hash para serem compartilháveis sem exigir redirecionamentos no
+GitHub Pages.
 
 As permissões públicas do Hasura expõem somente catálogo e horário comercial.
 Clientes e agendamentos continuam sem escrita anônima; a confirmação persistente

@@ -2,9 +2,14 @@
 
 ## Proposta
 
-O BelaVez é um SaaS multi-salão. O cliente comercial é o estabelecimento; o
-usuário final é a pessoa que deseja reservar um serviço. O produto deve reduzir
-o trabalho manual no WhatsApp sem retirar do salão o controle da própria agenda.
+O BelaVez é um hub de beleza com SaaS multi-salão. Para o consumidor, funciona
+como um marketplace para encontrar, comparar e agendar serviços por localização,
+preço, avaliação e disponibilidade. Para o estabelecimento, oferece uma vitrine
+personalizável, descoberta dentro do hub e gestão completa da agenda.
+
+O cliente comercial é o estabelecimento, contratado em um plano mensal único.
+O usuário final é a pessoa que busca e reserva um serviço. O produto reduz o
+trabalho manual no WhatsApp sem retirar do salão o controle da própria operação.
 
 ## Perfis
 
@@ -27,11 +32,22 @@ o trabalho manual no WhatsApp sem retirar do salão o controle da própria agend
 
 ## Fluxo principal do cliente
 
-1. Acessa o link do salão.
-2. Escolhe o serviço e, opcionalmente, o profissional.
-3. Visualiza somente horários realmente disponíveis.
-4. Informa os dados mínimos necessários e solicita a reserva.
-5. Recebe confirmação e pode reagendar ou cancelar segundo as regras do salão.
+1. Acessa o hub do BelaVez.
+2. Busca por local, serviço, preço, avaliação ou disponibilidade.
+3. Compara as vitrines e abre o perfil de um estabelecimento.
+4. Escolhe o serviço e, opcionalmente, o profissional.
+5. Visualiza somente horários realmente disponíveis.
+6. Informa os dados mínimos necessários e solicita a reserva.
+7. Recebe confirmação e pode reagendar ou cancelar segundo as regras do salão.
+
+## Fluxo comercial do salão
+
+1. Conhece o BelaVez pela página comercial ou pelo próprio marketplace.
+2. Consulta e contrata o plano mensal único.
+3. Personaliza marca, capa, descrição, endereço e contatos.
+4. Cadastra equipe, serviços, preços, horários, folgas e bloqueios.
+5. Publica a vitrine no hub e compartilha seu link próprio.
+6. Recebe e administra clientes e agendamentos pelo painel.
 
 ## Limite do MVP
 
@@ -46,4 +62,3 @@ atrito. Financeiro, estoque e marketing só entram depois dessa validação.
 - reservas concluídas pelo link público;
 - taxa de cancelamento e ausência;
 - minutos poupados pela recepção.
-

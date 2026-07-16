@@ -1,4 +1,4 @@
-import type { SalonCatalog } from '../types';
+import type { MarketplaceSalon, SalonCatalog } from '../types';
 
 export const demoCatalog: SalonCatalog = {
   id: 'demo-salon',
@@ -67,3 +67,122 @@ export const demoCatalog: SalonCatalog = {
     { weekday: 6, opensAt: '09:00', closesAt: '17:00' },
   ],
 };
+
+export const marketplaceSalons: MarketplaceSalon[] = [
+  {
+    id: 'demo-salon',
+    name: 'Ateliê Aurora',
+    slug: 'atelie-aurora',
+    location: 'Pinheiros, São Paulo',
+    distance: '1,2 km',
+    rating: 4.9,
+    reviewCount: 127,
+    priceFromCents: 8500,
+    nextAvailable: 'Hoje, 14:00',
+    categories: ['Cabelo', 'Coloração'],
+    services: ['Corte', 'Escova', 'Coloração', 'Tratamento'],
+    theme: 'rose',
+    featured: true,
+  },
+  {
+    id: 'demo-salon-2',
+    name: 'Casa Lume',
+    slug: 'casa-lume',
+    location: 'Vila Madalena, São Paulo',
+    distance: '2,4 km',
+    rating: 4.8,
+    reviewCount: 89,
+    priceFromCents: 6500,
+    nextAvailable: 'Hoje, 16:30',
+    categories: ['Unhas', 'Estética'],
+    services: ['Manicure', 'Pedicure', 'Alongamento', 'Sobrancelha'],
+    theme: 'sage',
+  },
+  {
+    id: 'demo-salon-3',
+    name: 'Barbearia Norte',
+    slug: 'barbearia-norte',
+    location: 'Santana, São Paulo',
+    distance: '5,8 km',
+    rating: 4.9,
+    reviewCount: 204,
+    priceFromCents: 4500,
+    nextAvailable: 'Amanhã, 09:30',
+    categories: ['Barbearia', 'Masculino'],
+    services: ['Corte masculino', 'Barba', 'Pezinho'],
+    theme: 'blue',
+  },
+  {
+    id: 'demo-salon-4',
+    name: 'Studio Íris',
+    slug: 'studio-iris',
+    location: 'Moema, São Paulo',
+    distance: '6,1 km',
+    rating: 4.7,
+    reviewCount: 73,
+    priceFromCents: 9000,
+    nextAvailable: 'Hoje, 18:00',
+    categories: ['Cílios', 'Sobrancelhas'],
+    services: ['Extensão de cílios', 'Design', 'Brow lamination'],
+    theme: 'plum',
+  },
+  {
+    id: 'demo-salon-5',
+    name: 'Raiz Natural',
+    slug: 'raiz-natural',
+    location: 'Bela Vista, São Paulo',
+    distance: '3,7 km',
+    rating: 5,
+    reviewCount: 52,
+    priceFromCents: 11000,
+    nextAvailable: 'Sexta, 10:00',
+    categories: ['Cachos', 'Cabelo natural'],
+    services: ['Corte a seco', 'Fitagem', 'Tratamento natural'],
+    theme: 'terracotta',
+    featured: true,
+  },
+  {
+    id: 'demo-salon-6',
+    name: 'Essenza Spa',
+    slug: 'essenza-spa',
+    location: 'Jardins, São Paulo',
+    distance: '4,3 km',
+    rating: 4.8,
+    reviewCount: 116,
+    priceFromCents: 13000,
+    nextAvailable: 'Amanhã, 13:00',
+    categories: ['Spa', 'Massagem'],
+    services: ['Massagem relaxante', 'Drenagem', 'Limpeza de pele'],
+    theme: 'sand',
+  },
+];
+
+export function demoCatalogForSalon(slug: string): SalonCatalog {
+  const salon = marketplaceSalons.find((item) => item.slug === slug);
+  if (!salon || salon.slug === demoCatalog.slug) return demoCatalog;
+  const services = salon.services.map((name, index) => {
+    const reference = demoCatalog.services[index % demoCatalog.services.length];
+    return {
+      ...reference,
+      id: `${salon.slug}-service-${index + 1}`,
+      name,
+      description: `Atendimento de ${name.toLocaleLowerCase('pt-BR')} com a equipe ${salon.name}.`,
+      priceCents: salon.priceFromCents + index * 3500,
+    };
+  });
+  return {
+    ...demoCatalog,
+    id: salon.id,
+    name: salon.name,
+    slug: salon.slug,
+    location: salon.location,
+    rating: salon.rating,
+    reviewCount: salon.reviewCount,
+    services,
+    professionals: demoCatalog.professionals.map((professional) => ({
+      ...professional,
+      bio: `Especialista em ${salon.categories[0].toLocaleLowerCase('pt-BR')}`,
+      serviceIds: services.map((service) => service.id),
+    })),
+  };
+}

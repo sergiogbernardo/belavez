@@ -5,10 +5,10 @@ completa da agenda pública.
 
 ## Comercial
 
-- plano por salão, por profissional ou por volume de reservas;
+- definir o preço do plano mensal único;
 - teste gratuito e duração;
 - ativação automática ou aprovação pela administração da plataforma;
-- cobrança dentro do produto ou inicialmente fora dele.
+- provedor e regras para contratação direta dentro do produto.
 
 ## Reserva
 
@@ -30,4 +30,3 @@ completa da agenda pública.
 - validar formalmente BelaVez no INPI antes do lançamento comercial;
 - definir logotipo e identidade visual depois de comparar direções;
 - confirmar se a assinatura será “Seu salão, no tempo certo.”.
-
