@@ -1,3 +1,14 @@
 table:
   name: salons
   schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - timezone
+      filter:
+        active:
+          _eq: true

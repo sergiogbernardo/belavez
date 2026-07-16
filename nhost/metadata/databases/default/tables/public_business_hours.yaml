@@ -1,3 +1,13 @@
 table:
   name: business_hours
   schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - id
+        - salon_id
+        - weekday
+        - opens_at
+        - closes_at
+      filter: {}

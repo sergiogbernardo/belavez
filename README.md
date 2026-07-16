@@ -29,6 +29,17 @@ agenda por uma página própria do negócio.
 Ficam para etapas posteriores: pagamentos, WhatsApp automático, programa de
 fidelidade, estoque, comissões, caixa e marketplace público de salões.
 
+## Estado atual
+
+A página pública já possui um fluxo responsivo de demonstração com escolha de
+serviço, profissional, data, horário, identificação do cliente, resumo e
+conclusão. O catálogo tenta carregar dados publicados pelo Hasura e usa o Ateliê
+Aurora como exemplo enquanto nenhum salão real estiver cadastrado.
+
+As permissões públicas do Hasura expõem somente catálogo e horário comercial.
+Clientes e agendamentos continuam sem escrita anônima; a confirmação persistente
+será implementada com uma operação controlada no backend.
+
 ## Desenvolvimento
 
 Requer Node.js 22.13 ou posterior.

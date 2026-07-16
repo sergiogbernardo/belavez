@@ -1,3 +1,13 @@
 table:
   name: professional_services
   schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - salon_id
+        - professional_id
+        - service_id
+        - duration_minutes
+        - price_cents
+      filter: {}

@@ -1,3 +1,14 @@
 table:
   name: professionals
   schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - id
+        - salon_id
+        - display_name
+        - bio
+      filter:
+        active:
+          _eq: true
