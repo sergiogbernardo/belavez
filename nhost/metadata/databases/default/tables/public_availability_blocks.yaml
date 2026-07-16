@@ -1,0 +1,3 @@
+table:
+  name: availability_blocks
+  schema: public

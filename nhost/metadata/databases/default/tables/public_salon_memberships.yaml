@@ -1,0 +1,3 @@
+table:
+  name: salon_memberships
+  schema: public
