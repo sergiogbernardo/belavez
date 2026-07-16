@@ -1,5 +1,5 @@
 import { CalendarDays, Check, Store } from 'lucide-react';
-import { isSupabaseConfigured } from './lib/supabase';
+import { isNhostConfigured } from './lib/nhost';
 
 const foundations = [
   'Uma plataforma para vários salões',
@@ -41,7 +41,7 @@ export default function App() {
               <span>Estrutura multi-salão preparada</span>
             </div>
             <p className="environment-status">
-              Supabase {isSupabaseConfigured ? 'conectado' : 'aguardando configuração'}
+              Nhost {isNhostConfigured ? 'conectado' : 'aguardando configuração'}
             </p>
           </aside>
         </div>

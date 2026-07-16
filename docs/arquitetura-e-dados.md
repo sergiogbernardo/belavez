@@ -3,14 +3,15 @@
 ## Visão geral
 
 O frontend estático é servido pelo GitHub Pages. Autenticação, banco relacional
-e atualizações em tempo real ficam no Supabase. O navegador utiliza apenas a
-chave publishable; autorização real é aplicada no PostgreSQL por RLS.
+e atualizações em tempo real ficam no Nhost. O navegador conhece somente o
+subdomínio e a região públicos; a autorização real é aplicada pelo Hasura.
 
 ## Isolamento multi-tenant
 
 `salons` é a raiz de cada espaço. Toda tabela operacional carrega `salon_id` e
-só pode ser acessada por um vínculo ativo em `salon_memberships`. Ser
-proprietário de um salão não concede qualquer acesso a outro.
+só pode ser acessada por um vínculo ativo em `salon_memberships`. As permissões
+do Hasura usam o ID autenticado presente no JWT do Nhost. Ser proprietário de
+um salão não concede qualquer acesso a outro.
 
 ## Entidades iniciais
 
@@ -49,4 +50,3 @@ sem expor nomes ou telefones de clientes.
 - registrar alterações importantes numa trilha de auditoria;
 - definir retenção e exclusão antes da abertura comercial;
 - separar consentimento de marketing da execução do agendamento.
-
