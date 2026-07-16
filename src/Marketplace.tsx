@@ -99,7 +99,7 @@ export default function Marketplace() {
           <button className="hub-nav-link" type="button" onClick={() => scrollToSection('resultados')}>Explorar salões</button>
           <button className="hub-nav-link" type="button" onClick={() => scrollToSection('como-funciona')}>Como funciona</button>
           <a href="#/para-saloes">Para salões</a>
-          <button className="hub-login" type="button">Entrar</button>
+          <a className="hub-login" href="#/painel">Entrar</a>
         </nav>
         <button className="menu-button" type="button" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
       </header>

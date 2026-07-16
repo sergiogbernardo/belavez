@@ -19,7 +19,9 @@ import {
   X,
 } from 'lucide-react';
 import BusinessPage from './BusinessPage';
+import DashboardPage from './DashboardPage';
 import Marketplace from './Marketplace';
+import OnboardingPage from './OnboardingPage';
 import { demoCatalogForSalon } from './data/demoCatalog';
 import { loadPublicCatalog } from './lib/catalog';
 import type { BookingDetails, BusinessHour, Professional, SalonCatalog, Service } from './types';
@@ -365,10 +367,14 @@ export default function App() {
     window.scrollTo({ top: 0 });
     document.title = route.startsWith('salao/')
       ? `${demoCatalogForSalon(route.split('/')[1] || '').name} | BelaVez`
-      : route === 'para-saloes' ? 'BelaVez para salões' : 'BelaVez — encontre seu salão';
+      : route === 'para-saloes' ? 'BelaVez para salões'
+        : route === 'cadastro-salao' ? 'Cadastre seu salão | BelaVez'
+          : route === 'painel' ? 'Painel | BelaVez' : 'BelaVez — encontre seu salão';
   }, [route]);
 
   if (route.startsWith('salao/')) return <SalonPage key={route} />;
   if (route === 'para-saloes') return <BusinessPage />;
+  if (route === 'cadastro-salao') return <OnboardingPage />;
+  if (route === 'painel') return <DashboardPage />;
   return <Marketplace />;
 }

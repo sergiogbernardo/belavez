@@ -1,6 +1,30 @@
 table:
   name: professionals
   schema: public
+object_relationships:
+  - name: salon
+    using:
+      foreign_key_constraint_on: salon_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        salon:
+          memberships:
+            _and:
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - active:
+                  _eq: true
+              - role:
+                  _in:
+                    - owner
+                    - manager
+      columns:
+        - salon_id
+        - display_name
+        - bio
+        - active
 select_permissions:
   - role: public
     permission:
@@ -10,5 +34,31 @@ select_permissions:
         - display_name
         - bio
       filter:
-        active:
-          _eq: true
+        _and:
+          - active:
+              _eq: true
+          - salon:
+              _and:
+                - active:
+                    _eq: true
+                - published:
+                    _eq: true
+  - role: user
+    permission:
+      columns:
+        - id
+        - salon_id
+        - user_id
+        - display_name
+        - bio
+        - active
+        - created_at
+        - updated_at
+      filter:
+        salon:
+          memberships:
+            _and:
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - active:
+                  _eq: true

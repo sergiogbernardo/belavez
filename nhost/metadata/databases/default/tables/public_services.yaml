@@ -1,6 +1,33 @@
 table:
   name: services
   schema: public
+object_relationships:
+  - name: salon
+    using:
+      foreign_key_constraint_on: salon_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        salon:
+          memberships:
+            _and:
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - active:
+                  _eq: true
+              - role:
+                  _in:
+                    - owner
+                    - manager
+      columns:
+        - salon_id
+        - name
+        - description
+        - duration_minutes
+        - price_cents
+        - active
+        - published
 select_permissions:
   - role: public
     permission:
@@ -17,3 +44,30 @@ select_permissions:
               _eq: true
           - published:
               _eq: true
+          - salon:
+              _and:
+                - active:
+                    _eq: true
+                - published:
+                    _eq: true
+  - role: user
+    permission:
+      columns:
+        - id
+        - salon_id
+        - name
+        - description
+        - duration_minutes
+        - price_cents
+        - active
+        - published
+        - created_at
+        - updated_at
+      filter:
+        salon:
+          memberships:
+            _and:
+              - user_id:
+                  _eq: X-Hasura-User-Id
+              - active:
+                  _eq: true

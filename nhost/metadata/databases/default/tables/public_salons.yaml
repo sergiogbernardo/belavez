@@ -1,6 +1,35 @@
 table:
   name: salons
   schema: public
+array_relationships:
+  - name: memberships
+    using:
+      foreign_key_constraint_on:
+        column: salon_id
+        table:
+          name: salon_memberships
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        created_by: X-Hasura-User-Id
+      columns:
+        - name
+        - slug
+        - timezone
+        - category
+        - description
+        - address_line
+        - neighborhood
+        - city
+        - state
+        - postal_code
+        - phone
+        - instagram
+        - primary_color
+        - price_level
 select_permissions:
   - role: public
     permission:
@@ -9,6 +38,89 @@ select_permissions:
         - name
         - slug
         - timezone
+        - category
+        - description
+        - address_line
+        - neighborhood
+        - city
+        - state
+        - phone
+        - instagram
+        - logo_url
+        - cover_url
+        - primary_color
+        - price_level
       filter:
-        active:
-          _eq: true
+        _and:
+          - active:
+              _eq: true
+          - published:
+              _eq: true
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - slug
+        - timezone
+        - active
+        - created_at
+        - updated_at
+        - created_by
+        - category
+        - description
+        - address_line
+        - neighborhood
+        - city
+        - state
+        - postal_code
+        - phone
+        - instagram
+        - logo_url
+        - cover_url
+        - primary_color
+        - price_level
+        - published
+        - featured
+        - plan_status
+        - trial_ends_at
+      filter:
+        memberships:
+          _and:
+            - user_id:
+                _eq: X-Hasura-User-Id
+            - active:
+                _eq: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - slug
+        - timezone
+        - active
+        - category
+        - description
+        - address_line
+        - neighborhood
+        - city
+        - state
+        - postal_code
+        - phone
+        - instagram
+        - logo_url
+        - cover_url
+        - primary_color
+        - price_level
+      filter:
+        memberships:
+          _and:
+            - user_id:
+                _eq: X-Hasura-User-Id
+            - active:
+                _eq: true
+            - role:
+                _in:
+                  - owner
+                  - manager
+      check: {}

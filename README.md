@@ -37,12 +37,22 @@ possui um fluxo responsivo com escolha de serviço, profissional, data, horário
 identificação do cliente, resumo e conclusão.
 
 A área “Para salões” apresenta o plano mensal único e a proposta de contratação.
-As rotas usam hash para serem compartilháveis sem exigir redirecionamentos no
-GitHub Pages.
+O botão de contratação abre um cadastro guiado em quatro etapas: conta do
+proprietário, dados do negócio, identidade visual e configuração inicial de
+serviço, profissional e horário. Existe um modo de demonstração que salva os
+dados somente no navegador para testar toda a experiência sem criar uma conta.
+
+Depois do cadastro, o proprietário entra em um primeiro painel administrativo
+com visão geral, agenda do dia e checklist de publicação. A vitrine começa
+privada e sua publicação permanece sob controle da plataforma até a ativação do
+plano. As rotas usam hash para serem compartilháveis sem exigir
+redirecionamentos no GitHub Pages.
 
 As permissões públicas do Hasura expõem somente catálogo e horário comercial.
 Clientes e agendamentos continuam sem escrita anônima; a confirmação persistente
-será implementada com uma operação controlada no backend.
+será implementada com uma operação controlada no backend. Os cadastros reais de
+salão usam o usuário autenticado como proprietário e as permissões do Hasura
+isolam serviços, profissionais e horários por estabelecimento.
 
 ## Desenvolvimento
 
